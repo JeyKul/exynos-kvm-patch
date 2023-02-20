@@ -1,7 +1,7 @@
-diff --git a/arch/arm/kvm/arm.c b/arch/arm/kvm/arm.c
+diff --git ./arch/arm/kvm/arm.c ./arch/arm/kvm/arm.c
 index 9929cdd8..935d0eca 100644
---- a/arch/arm/kvm/arm.c
-+++ b/arch/arm/kvm/arm.c
+--- ./arch/arm/kvm/arm.c
++++ ./arch/arm/kvm/arm.ca
 @@ -804,6 +804,8 @@ long kvm_arch_vm_ioctl(struct file *filp,
  	}
  }
@@ -168,10 +168,10 @@ index 9929cdd8..935d0eca 100644
  out_err:
  	kvm_err("error initializing Hyp mode: %d\n", err);
  	return err;
-diff --git a/arch/arm64/include/asm/virt.h b/arch/arm64/include/asm/virt.h
+diff --git ./arch/arm64/include/asm/virt.h ./arch/arm64/include/asm/virt.h
 index 7a5df525..86f7d785 100644
---- a/arch/arm64/include/asm/virt.h
-+++ b/arch/arm64/include/asm/virt.h
+--- /arch/arm64/include/asm/virt.h
++++ /arch/arm64/include/asm/virt.h
 @@ -40,8 +40,9 @@ phys_addr_t __hyp_get_vectors(void);
  /* Reports the availability of HYP mode */
  static inline bool is_hyp_mode_available(void)
@@ -184,10 +184,10 @@ index 7a5df525..86f7d785 100644
  }
  
  /* Check if the bootloader has booted CPUs in different modes */
-diff --git a/arch/arm64/kvm/hyp-init.S b/arch/arm64/kvm/hyp-init.S
+diff --git ./arch/arm64/kvm/hyp-init.S ./arch/arm64/kvm/hyp-init.S
 index c3191168..b14649f4 100644
---- a/arch/arm64/kvm/hyp-init.S
-+++ b/arch/arm64/kvm/hyp-init.S
+--- ./arch/arm64/kvm/hyp-init.S
++++ ./arch/arm64/kvm/hyp-init.S
 @@ -27,6 +27,7 @@
  	.align	11
  
@@ -226,10 +226,10 @@ index c3191168..b14649f4 100644
  ENDPROC(__kvm_hyp_init)
  
  	.ltorg
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
+diff --git ./arch/arm64/kvm/sys_regs.c ./arch/arm64/kvm/sys_regs.c
 index f4001cb1..cb3056ec 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
+--- ./arch/arm64/kvm/sys_regs.c
++++ ./arch/arm64/kvm/sys_regs.c
 @@ -436,6 +436,10 @@ static const struct sys_reg_desc sys_reg_descs[] = {
  	{ Op0(0b11), Op1(0b011), CRn(0b1101), CRm(0b0000), Op2(0b011),
  	  NULL, reset_unknown, TPIDRRO_EL0 },
@@ -241,10 +241,10 @@ index f4001cb1..cb3056ec 100644
  	/* DACR32_EL2 */
  	{ Op0(0b11), Op1(0b100), CRn(0b0011), CRm(0b0000), Op2(0b000),
  	  NULL, reset_unknown, DACR32_EL2 },
-diff --git a/init/Makefile b/init/Makefile
+diff --git ./init/Makefile ./init/Makefile
 index a6d79459..bd442b10 100644
---- a/init/Makefile
-+++ b/init/Makefile
+--- ./init/Makefile
++++ ./init/Makefile
 @@ -12,6 +12,10 @@ obj-y += _vmm.o vmm.o
  obj-y += ld.o
  endif
@@ -256,10 +256,10 @@ index a6d79459..bd442b10 100644
  ifneq ($(CONFIG_ARCH_INIT_TASK),y)
  obj-y                          += init_task.o
  endif
-diff --git a/init/main.c b/init/main.c
+diff --git ./init/main.c ./init/main.c
 index 63b3eafd..e11c96b2 100644
---- a/init/main.c
-+++ b/init/main.c
+--- ./init/main.c
++++ ./init/main.c
 @@ -631,6 +631,9 @@ asmlinkage __visible void __init start_kernel(void)
  			   set_init_arg);
  
@@ -281,11 +281,11 @@ index 63b3eafd..e11c96b2 100644
  
  	/*
  	 * Set up the scheduler prior starting any interrupts (such as the
-diff --git a/init/vmm-kvm.c b/init/vmm-kvm.c
+diff --git ./init/vmm-kvm.c ./init/vmm-kvm.c
 new file mode 100644
 index 00000000..c9cc66cd
 --- /dev/null
-+++ b/init/vmm-kvm.c
++++ ./init/vmm-kvm.c
 @@ -0,0 +1,23 @@
 +#include <linux/types.h>
 +#include <asm/memory.h>
@@ -310,10 +310,10 @@ index 00000000..c9cc66cd
 +    __flush_dcache_area(hyp_params, sizeof(hyp_params));
 +    _vmm_goto_EL2(VMM_64BIT_SMC_CALL_MAGIC, (void*)code, VMM_STACK_OFFSET, VMM_MODE_AARCH64, (void*)virt_to_phys(hyp_params), 0);
 +}
-diff --git a/virt/kvm/arm/arch_timer.c b/virt/kvm/arm/arch_timer.c
+diff --git ./virt/kvm/arm/arch_timer.c ./virt/kvm/arm/arch_timer.c
 index 1c0772b3..6a30ff12 100644
---- a/virt/kvm/arm/arch_timer.c
-+++ b/virt/kvm/arm/arch_timer.c
+--- ./virt/kvm/arm/arch_timer.c
++++ ./virt/kvm/arm/arch_timer.c
 @@ -64,7 +64,7 @@ static void kvm_timer_inject_irq(struct kvm_vcpu *vcpu)
  	int ret;
  	struct arch_timer_cpu *timer = &vcpu->arch.timer_cpu;
